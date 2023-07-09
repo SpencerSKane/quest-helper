@@ -42,6 +42,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import javax.inject.Inject;
 
@@ -60,6 +61,7 @@ import com.questhelper.steps.QuestStep;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.overlay.components.LineComponent;
 import net.runelite.client.ui.overlay.components.PanelComponent;
+import java.util.HashMap;
 
 public abstract class QuestHelper implements Module, QuestDebugRenderer
 {
@@ -96,6 +98,8 @@ public abstract class QuestHelper implements Module, QuestDebugRenderer
 	@Setter
 	@Getter
 	protected QuestHelperPlugin questHelperPlugin;
+
+	private Map xpMap = new HashMap();
 
 	@Override
 	public void configure(Binder binder)
@@ -293,6 +297,7 @@ public abstract class QuestHelper implements Module, QuestDebugRenderer
 		}
 
 		List<ExperienceReward> experienceReward = getExperienceRewards();
+
 		if (experienceReward != null)
 		{
 			experienceReward.forEach((expReward -> rewards.add(expReward.getDisplayText())));
@@ -320,4 +325,41 @@ public abstract class QuestHelper implements Module, QuestDebugRenderer
 	}
 
 	public abstract List<PanelDetails> getPanels();
+
+	//TODO: remove Syso
+	public int buildXpRewardMap()
+	{
+		List<ExperienceReward> experienceReward = getExperienceRewards();
+		int totalXp = 0;
+
+		if (experienceReward != null)
+		{
+			for(int i = 0; i < experienceReward.size(); i++){
+				xpMap.put(experienceReward.get(i).getSkill(), experienceReward.get(i).getExperience());
+				totalXp += experienceReward.get(i).getExperience();
+				System.out.print(experienceReward.get(i).getSkill() + ": " + experienceReward.get(i).getExperience() + ",");
+			}
+			xpMap.put("TOTAL", totalXp);
+			System.out.println("Total: " + totalXp + "done\n");
+			return 1;
+		}
+		else
+		{
+			System.out.print("no map for quest reward xp\n");
+			return 0;
+		}
+	}
+	//Skill name format is: "SKILL" (ie WOODCUTTING, SMITHING, etc.),
+	// "TOTAL" will return the total xp reward for a quest
+	//TODO: remove Syso
+	public int getXpFromMap(String skill){
+		String questwXp;
+		 if(xpMap.containsKey(skill)){
+			questwXp=(skill + "," + (int) xpMap.get(skill));
+			System.out.println(questwXp);
+
+			return (int) xpMap.get(skill);
+		}
+		else return 0;
+	}
 }

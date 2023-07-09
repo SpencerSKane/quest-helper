@@ -74,7 +74,8 @@ public interface QuestHelperConfig extends Config
 		RELEASE_DATE(QuestOrders.sortByRelease(), QuestFilter.QUEST, QuestFilter.MINIQUEST),
 
 		QUEST_POINTS_ASC(QuestOrders.sortByQuestPointRewardAscending(), QuestFilter.QUEST),
-		QUEST_POINTS_DESC(QuestOrders.sortByQuestPointRewardDescending(), QuestFilter.QUEST);
+		QUEST_POINTS_DESC(QuestOrders.sortByQuestPointRewardDescending(), QuestFilter.QUEST),
+		SKILL_XP(QuestOrders.sortBySkillXp(), QuestFilter.QUEST);
 
 		private final Comparator<QuestHelper> comparator;
 		@Getter

@@ -53,4 +53,14 @@ public class ExperienceReward implements Reward
     {
         return  QuantityFormatter.formatNumber(experience) + " " + Character.toUpperCase(skill.name().charAt(0)) + skill.name().toLowerCase(Locale.ROOT).substring(1) + " Experience";
     }
+	public int getExperience(){
+		return this.experience;
+	}
+	public String getSkill()
+	{
+		return this.skill.toString();
+	}
+
+
+
 }

@@ -303,6 +303,7 @@ public class QuestHelperPanel extends PluginPanel
 		allDropdownSections.add(difficultyPanel, BorderLayout.CENTER);
 		allDropdownSections.add(orderPanel, BorderLayout.SOUTH);
 
+
 		searchQuestsPanel.add(allDropdownSections, BorderLayout.NORTH);
 
 		// Wrapper

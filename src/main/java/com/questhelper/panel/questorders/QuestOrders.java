@@ -29,7 +29,9 @@ import com.questhelper.QuestHelperQuest;
 import com.questhelper.questhelpers.QuestHelper;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Pattern;
+import com.questhelper.rewards.ExperienceReward;
 import lombok.Getter;
 
 public class QuestOrders
@@ -753,5 +755,10 @@ public class QuestOrders
 	public static Comparator<QuestHelper> sortByQuestPointRewardDescending()
 	{
 		return Comparator.comparing(q -> q.getQuestPointReward() != null ? q.getQuestPointReward().getPoints() : 0, Comparator.reverseOrder());
+	}
+
+	public static Comparator<QuestHelper> sortBySkillXp(){
+
+		return Comparator.comparing(q -> q.buildXpRewardMap() != 0 ? q.getXpFromMap("TOTAL") : 0, Comparator.reverseOrder());
 	}
 }
