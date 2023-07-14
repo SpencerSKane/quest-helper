@@ -349,6 +349,24 @@ public abstract class QuestHelper implements Module, QuestDebugRenderer
 			return 0;
 		}
 	}
+
+
+	public boolean hasXpRewardSkill(String skill){
+		List<ExperienceReward> experienceReward = getExperienceRewards();
+		if (experienceReward != null)
+		{
+			for(int i = 0; i < experienceReward.size(); i++){
+				if(experienceReward.get(i).getSkill().equals(skill)){
+					System.out.print("has " + skill + " xp\n");
+					return true;
+				}
+			}
+		}
+		System.out.print("no " + skill + " xp\n");
+		return false;
+
+
+	}
 	//Skill name format is: "SKILL" (ie WOODCUTTING, SMITHING, etc.),
 	// "TOTAL" will return the total xp reward for a quest
 	//TODO: remove Syso

@@ -757,8 +757,16 @@ public class QuestOrders
 		return Comparator.comparing(q -> q.getQuestPointReward() != null ? q.getQuestPointReward().getPoints() : 0, Comparator.reverseOrder());
 	}
 
-	public static Comparator<QuestHelper> sortBySkillXp(){
+	public static Comparator<QuestHelper> sortBySkillXpAscending(){
+
+		return Comparator.comparing(q -> q.buildXpRewardMap() != 0 ? q.getXpFromMap("TOTAL") : 0);
+	}
+
+	public static Comparator<QuestHelper> sortBySkillXpDescending(){
 
 		return Comparator.comparing(q -> q.buildXpRewardMap() != 0 ? q.getXpFromMap("TOTAL") : 0, Comparator.reverseOrder());
 	}
+
+	//TODO: method that calls another method that builds the nested drop down
+
 }

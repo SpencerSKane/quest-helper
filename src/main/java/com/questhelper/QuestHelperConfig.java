@@ -75,7 +75,8 @@ public interface QuestHelperConfig extends Config
 
 		QUEST_POINTS_ASC(QuestOrders.sortByQuestPointRewardAscending(), QuestFilter.QUEST),
 		QUEST_POINTS_DESC(QuestOrders.sortByQuestPointRewardDescending(), QuestFilter.QUEST),
-		SKILL_XP(QuestOrders.sortBySkillXp(), QuestFilter.QUEST);
+		SKILL_XP_ASC(QuestOrders.sortBySkillXpAscending(), QuestFilter.QUEST),
+		SKILL_XP_DESC(QuestOrders.sortBySkillXpDescending(), QuestFilter.QUEST);
 
 		private final Comparator<QuestHelper> comparator;
 		@Getter
@@ -158,8 +159,15 @@ public interface QuestHelperConfig extends Config
 		 */
 		SKILL_MEMBERS(QuestDetails.Type.SKILL_P2P),
 
-		PLAYER_MADE_QUESTS("Player-made quests", q -> q.getQuest().getQuestType() == QuestDetails.Type.PLAYER_QUEST);
+		PLAYER_MADE_QUESTS("Player-made quests", q -> q.getQuest().getQuestType() == QuestDetails.Type.PLAYER_QUEST),
 
+		AGILITY_XP_REWARD("Agility XP reward", q -> q.hasXpRewardSkill("AGILITY") == true),
+		ATTACK_XP_REWARD("Attack XP reward", q -> q.hasXpRewardSkill("ATTACK") == true),
+		CONSTRUCTION_XP_REWARD("Construction XP reward", q -> q.hasXpRewardSkill("CONSTRUCTION") == true),
+		COOKING_XP_REWARD("Cooking XP reward", q -> q.hasXpRewardSkill("COOKING") == true),
+		CRAFTING_XP_REWARD("Crafting XP reward", q -> q.hasXpRewardSkill("CRAFTING") == true),
+		DEFENSE_XP_REWARD("DEFENSE XP reward", q -> q.hasXpRewardSkill("DEFENSE") == true)
+		;
 
 		private final Predicate<QuestHelper> predicate;
 
