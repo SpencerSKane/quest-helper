@@ -288,7 +288,7 @@ public class TempleOfTheEye extends BasicQuestHelper
 
 		// Note: You also can't be wearing any other god's equipment when talking to him
 		talkToMage1 = new NpcStep(this, NpcID.MAGE_OF_ZAMORAK_2582, new WorldPoint(3258, 3383, 0),
-			"Talk to Mage of Zamorak in the Varrock chaos temple.",
+			"Use the eye amulet on the Mage of Zamorak in the Varrock chaos temple to initiate a conversation.",
 			eyeAmulet);
 		talkToMage1.addDialogStep("I need your help with an amulet.");
 		talkToMage1.addTeleport(varrockTeleport);
